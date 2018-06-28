@@ -16,10 +16,14 @@ export default class IndexPage extends React.Component {
           {posts
             .map(({ node: post }) => (
               <div
-                className="content"
+                className="content columns"
                 style={{ border: '1px solid #eaecee', padding: '2em 4em' }}
                 key={post.id}
               >
+                <div className="column is-one-third">
+                <img src={'http://res.cloudinary.com/dkeudosjel/image/upload/c_fill,w_200/v1530056697/' + post.frontmatter.featuredImage} width="200" height="100"/>
+                </div>
+                <div className="column">
                 <p>
                   <Link className="has-text-primary" to={post.fields.slug}>
                     {post.frontmatter.title}
@@ -35,6 +39,7 @@ export default class IndexPage extends React.Component {
                     Keep Reading →
                   </Link>
                 </p>
+                </div>
               </div>
             ))}
         </div>
@@ -59,7 +64,7 @@ export const pageQuery = graphql`
     ) {
       edges {
         node {
-          excerpt(pruneLength: 400)
+          excerpt(pruneLength: 300)
           id
           fields {
             slug
@@ -68,6 +73,7 @@ export const pageQuery = graphql`
             title
             templateKey
             date(formatString: "MMMM DD, YYYY")
+            featuredImage
           }
         }
       }

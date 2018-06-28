@@ -11,12 +11,14 @@ exports.createPages = ({ boundActionCreators, graphql }) => {
         edges {
           node {
             id
+            html
             fields {
               slug
             }
             frontmatter {
               tags
               templateKey
+              featuredImage
             }
           }
         }
